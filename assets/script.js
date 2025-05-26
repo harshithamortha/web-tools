@@ -2,8 +2,7 @@
 const path = window.location.pathname;
 
 if (path.includes('age-calculator.html')) {
-  // Attach Age Calculator function to global scope
-  window.calculateAge = function() {
+  window.calculateAge = function () {
     const dobInput = document.getElementById('dob').value;
     const resultEl = document.getElementById('result');
 
@@ -36,3 +35,5 @@ if (path.includes('age-calculator.html')) {
     resultEl.textContent = `You are ${years} years, ${months} months, and ${days} days old.`;
   };
 }
+
+
