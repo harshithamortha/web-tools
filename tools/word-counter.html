@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Count the number of words in your text easily." />
+<title>Word Counter - Web Tools</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col">
+<nav class="bg-gray-800 p-4">
+<ul class="flex justify-center space-x-6 text-white">
+<li><a href="../index.html" class="hover:underline">Home</a></li>
+<li><a href="age-calculator.html" class="hover:underline">Age Calculator</a></li>
+<li><a href="bmi-calculator.html" class="hover:underline">BMI Calculator</a></li>
+<li><a href="EMI-calculator.html" class="hover:underline">EMI Calculate</a></li>
+<li><a href="percentage-calculator.html" class="hover:underline">Percentage Calculator</a></li>
+</ul>
+</nav>
+
+<main class="flex items-center justify-center min-h-[calc(100vh-160px)] px-4">
+<div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold text-center mb-6">Word Counter</h1>
+
+    <label for="input-text" class="block font-medium mb-2">Enter your text</label>
+    <textarea id="input-text" rows="6" class="w-full p-2 border border-gray-300 rounded mb-4 resize-none"></textarea>
+
+    <button id="calculate-words" type="button" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 mb-2">
+    Count Words
+    </button>
+
+    <button id="reset-words" class="w-full bg-gray-300 text-gray-800 py-2 rounded hover:bg-gray-400">
+    Reset
+    </button>
+
+    <p id="word-result" class="mt-4 font-semibold text-center"></p>
+</div>
+</main>
+
+<footer class="text-center mt-10 py-4 bg-gray-200 text-sm">
+<p>&copy; 2025 Harshitha's Web Tools</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

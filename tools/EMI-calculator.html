@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Loan EMI Calculator - Web Tools</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col">
+<nav class="bg-gray-800 p-4">
+<ul class="flex justify-center space-x-6 text-white">
+    <li><a href="../index.html" class="hover:underline">Home</a></li>
+    <li><a href="age-calculator.html" class="hover:underline">Age Calculator</a></li>
+    <li><a href="bmi-calculator.html" class="hover:underline">BMI Calculator</a></li>
+    <li><a href="percentage-calculator.html" class="hover:underline">Percentage Calculator</a></li>
+    <li><a href="word-counter.html" class="hover:underline">Word Counter</a></li>
+</ul>
+</nav>
+
+<main class="flex items-center justify-center min-h-[calc(100vh-160px)] px-4">
+<div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold text-center mb-6">Loan EMI Calculator</h1>
+
+    <label for="loan-amount" class="block font-medium mb-1">Loan Amount</label>
+    <input type="number" id="loan-amount" class="w-full p-2 border border-gray-300 rounded mb-4" />
+
+    <label for="interest-rate" class="block font-medium mb-1">Annual Interest Rate (%)</label>
+    <input type="number" id="interest-rate" class="w-full p-2 border border-gray-300 rounded mb-4" />
+
+    <label for="loan-tenure" class="block font-medium mb-1">Loan Tenure (in months)</label>
+    <input type="number" id="loan-tenure" class="w-full p-2 border border-gray-300 rounded mb-4" />
+
+    <button id="calculate-emi" type="button" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 mb-2">
+    Calculate
+    </button>
+
+    <button id="reset-loan" class="w-full bg-gray-300 text-gray-800 py-2 rounded hover:bg-gray-400">
+    Reset
+    </button>
+
+    <p id="emi-result" class="mt-4 font-semibold text-center"></p>
+    <p id="emi-warning" class="mt-2 text-sm text-red-800 bg-yellow-200 p-2 rounded hidden text-center font-medium"></p>
+</div>
+</main>
+
+<footer class="text-center mt-10 py-4 bg-gray-200 text-sm">
+<p>&copy; 2025 Harshitha's Web Tools</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
