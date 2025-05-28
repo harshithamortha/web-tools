@@ -88,9 +88,9 @@ resetFields(['height', 'weight'], 'bmi-result', 'bmi-warning');
 function calculateEMI() {
 const amount = parseFloat(document.getElementById("loan-amount").value);
 const rate = parseFloat(document.getElementById("interest-rate").value);
-const months = parseInt(document.getElementById("tenure").value);
-const result = document.getElementById("loan-result");
-const warn = "loan-warning";
+const months = parseInt(document.getElementById("loan-tenure").value);
+const result = document.getElementById("emi-result");
+const warn = "emi-warning";
 
 if (!amount || !rate || !months)
 return showWarning(warn, "Fill all fields."), result.textContent = '';
@@ -109,7 +109,7 @@ result.textContent = `Monthly EMI: ₹${emi.toFixed(2)} | Total: ₹${(emi * mon
 }
 
 function resetLoan() {
-resetFields(["loan-amount", "interest-rate", "tenure"], "loan-result", "loan-warning");
+resetFields(["loan-amount", "interest-rate", "loan-tenure"], "emi-result", "emi-warning");
 }
 
 // ---------- Percentage Calculator ----------
@@ -136,27 +136,42 @@ resetFields(["base", "value"], "percentage-result", "percentage-warning");
 
 // Word Counter
 function countWords() {
-const text = document.getElementById("input-text").value.trim();
-if (!text) {
-displayWordResult("Please enter some text to count.");
-return;
-}
+  const input = document.getElementById("input-text");
+  const text = input.value.trim();
+  const warn = "word-warning";
+  const result = "word-result";
 
-// Match words using regex to count accurately
-const words = text.match(/\b\w+\b/g);
-const count = words ? words.length : 0;
+  if (!text) {
+    showWarning(warn, "Please enter some text to count.");
+    document.getElementById(result).textContent = "";
+    return;
+  }
 
-displayWordResult(`Word count: ${count}`);
+  const allTokens = text.match(/\b[\w'-]+\b/g) || [];
+   // Validate words:
+  // - Must be only letters (a-z, A-Z)
+  // - Can have internal apostrophes or hyphens (like "don't" or "mother-in-law")
+  // - Ignore tokens with any digit
+  // - Ignore single-letter tokens except "I" or "a"
+  const validWords = allTokens.filter(word => {
+    if (/\d/.test(word)) return false;
+    if (!/^[a-zA-Z]+(?:['-][a-zA-Z]+)*$/.test(word)) return false;
+    if (word.length === 1 && !/^[Ia]$/i.test(word)) return false;
+    return true;
+  });
+
+  if (validWords.length === 0) {
+    showWarning(warn, "Please enter valid words");
+    document.getElementById(result).textContent = "";
+    return;
+  }
+
+  hideWarning(warn);
+  document.getElementById(result).textContent = `Word count: ${validWords.length}`;
 }
 
 function resetWords() {
-document.getElementById("input-text").value = "";
-displayWordResult("");
-}
-
-function displayWordResult(message) {
-const resultEl = document.getElementById("word-result");
-resultEl.textContent = message;
+  resetFields(["input-text"], "word-result", "word-warning");
 }
 
 
@@ -173,12 +188,6 @@ const bmiBtn = document.getElementById("calculate-bmi");
 const resetBmiBtn = document.getElementById("reset-bmi");
 if (bmiBtn) bmiBtn.addEventListener("click", calculateBMI);
 if (resetBmiBtn) resetBmiBtn.addEventListener("click", resetBMI);
-
-// Tip Calculator
-const tipBtn = document.getElementById("calculate-tip");
-const resetTipBtn = document.getElementById("reset-tip");
-if (tipBtn) tipBtn.addEventListener("click", calculateTip);
-if (resetTipBtn) resetTipBtn.addEventListener("click", resetTip);
 
 // Loan EMI Calculator
 const emiBtn = document.getElementById("calculate-emi");
